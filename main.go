@@ -11,10 +11,21 @@ import (
 
 func main() {
 	//howToUseBasicFunctions()
+
+	var requirmentInMonth *C.struct_RequirmentInMonth = C.CreateRequirmentInMonth()
+
 	var totalStaffNum = C.int(5)
 	var staffs *C.struct_Staff = C.CreateStaffs(totalStaffNum)
+
+	setRequirment(requirmentInMonth)
 	setUserInfo(staffs)
+
+	C.PrintRequirment(requirmentInMonth)
 	C.PrintStaffsAskDayOffRecords(staffs, totalStaffNum)
+}
+
+func setRequirment(requirmentInMonth *C.struct_RequirmentInMonth) {
+	C.SetRequirmentMonth(requirmentInMonth, C.CString("JULY"), C.int(31))
 }
 
 func setUserInfo(staffs *C.struct_Staff) {
@@ -45,14 +56,14 @@ func setDefultDayOffValue(staffs *C.struct_Staff, staffIndex int) {
 }
 
 func howToUseBasicFunctions() {
-	name := C.CString("Second Gopher")
-	defer C.free(unsafe.Pointer(name))
+	staffName := C.CString("Second Gopher")
+	defer C.free(unsafe.Pointer(staffName))
 
 	year := C.int(2018)
 
 	g := C.struct_Staff{
-		name: name,
-		year: year,
+		name:             staffName,
+		startWorkingYear: year,
 	}
 
 	ptr := C.malloc(C.sizeof_char * 1024)

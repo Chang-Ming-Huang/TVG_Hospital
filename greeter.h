@@ -25,7 +25,16 @@ struct Staff
     enum title position;
     enum specialStatus status;
     enum dayOffType askDayOff[31];
-    int year; //for test
+    int startWorkingYear;
+};
+
+struct RequirmentInMonth
+{
+    const char *month;
+    int totalDaysInMonth;     // TODO it might be 28 / 29 days in Frb.
+    int staffsRequirment[31]; //choose either staffsRequirment or staffsCouldTakeDayOff
+    int staffsCouldTakeDayOff[31];
+    ////TOOD should save the names who take day off
 };
 
 int greet(struct Staff *g, char *out);
@@ -39,6 +48,9 @@ void SetArrValue(int *arr, int index, int value);
 struct Staff *CreateStaffs(int num);
 void SetStaffName(struct Staff *staffs, int index, char *name);
 void PrintStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum);
-
 void SetStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType);
 void ShowAskDayOff(enum dayOffType *askDayOff, int totalDays);
+
+struct RequirmentInMonth *CreateRequirmentInMonth();
+void SetRequirmentMonth(struct RequirmentInMonth *requirmentInMonth, char *month, int totalDaysInMonth);
+void PrintRequirment(struct RequirmentInMonth *requirmentInMonth);

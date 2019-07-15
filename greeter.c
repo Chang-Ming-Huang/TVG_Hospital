@@ -6,7 +6,7 @@
 int greet(struct Staff *g, char *out)
 {
   int n;
-  n = sprintf(out, "Greetings, %s from %d! We come in peace :)", g->name, g->year);
+  n = sprintf(out, "Greetings, %s from %d! We come in peace :)", g->name, g->startWorkingYear);
 
   return n;
 }
@@ -94,4 +94,27 @@ void PrintStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum)
     printf("%s:", staffs[i].name);
     ShowAskDayOff(staffs[i].askDayOff, totalDays);
   }
+}
+
+struct RequirmentInMonth *CreateRequirmentInMonth()
+{
+  struct RequirmentInMonth *requirmentInMonth = (struct RequirmentInMonth *)malloc(sizeof(struct RequirmentInMonth) * 1);
+
+  for (int i = 0; i < 31; i++)
+  {
+    requirmentInMonth->staffsRequirment[i] = 0;
+    requirmentInMonth->staffsCouldTakeDayOff[i] = 0;
+  }
+  return requirmentInMonth;
+}
+
+void SetRequirmentMonth(struct RequirmentInMonth *requirmentInMonth, char *month, int totalDaysInMonth)
+{
+  requirmentInMonth->month = month;
+  requirmentInMonth->totalDaysInMonth = totalDaysInMonth;
+}
+
+void PrintRequirment(struct RequirmentInMonth *requirmentInMonth)
+{
+  printf("Month: %s, %d days. \n", requirmentInMonth->month, requirmentInMonth->totalDaysInMonth);
 }
