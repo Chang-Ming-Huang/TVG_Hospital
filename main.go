@@ -11,10 +11,10 @@ import (
 
 func main() {
 	//howToUseBasicFunctions()
-
-	var staffs *C.struct_Staff = C.CreateStaffs(5)
+	var totalStaffNum = C.int(5)
+	var staffs *C.struct_Staff = C.CreateStaffs(totalStaffNum)
 	setUserInfo(staffs)
-	C.PrintStaffsAskDayOffRecords(staffs, 5)
+	C.PrintStaffsAskDayOffRecords(staffs, totalStaffNum)
 }
 
 func setUserInfo(staffs *C.struct_Staff) {
@@ -37,6 +37,7 @@ func setUserInfo(staffs *C.struct_Staff) {
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 8, C.VACATION_RESERVATION)
 }
 
+//TODO 31->ENUM
 func setDefultDayOffValue(staffs *C.struct_Staff, staffIndex int) {
 	for day := 0; day < 31; day++ {
 		C.SetStaffDayOff(staffs, C.int(staffIndex), C.int(day), C.WORKING)
