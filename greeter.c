@@ -88,11 +88,10 @@ void SetStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffTy
 
 void PrintStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum)
 {
-  int sizeOfAskDayOffArray = 31;
   for (int i = 0; i < totalStaffNum; i++)
   {
     printf("%s:", staffs[i].name);
-    ShowAskDayOff(staffs[i].askDayOff, sizeOfAskDayOffArray);
+    ShowAskDayOff(staffs[i].askDayOff, MAX_DAYS_IN_ONE_MONTH);
   }
 }
 
@@ -100,7 +99,7 @@ struct RequirmentInMonth *CreateRequirmentInMonth()
 {
   struct RequirmentInMonth *requirmentInMonth = (struct RequirmentInMonth *)malloc(sizeof(struct RequirmentInMonth) * 1);
 
-  for (int i = 0; i < 31; i++)
+  for (int i = 0; i < MAX_DAYS_IN_ONE_MONTH; i++)
   {
     requirmentInMonth->staffsRequirment[i] = 0;
     requirmentInMonth->staffsCouldTakeDayOff[i] = 0;

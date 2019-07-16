@@ -1,3 +1,5 @@
+#define MAX_DAYS_IN_ONE_MONTH 31
+
 enum title
 {
     JUNIOR,
@@ -23,18 +25,18 @@ struct Staff
 {
     const char *name;
     const char *id;
+    int startWorkingYear;
     enum title position;
     enum specialStatus status;
-    enum dayOffType askDayOff[31]; // save record of day1 at [0], day2 at [1], ..., day12 at [11]
-    int startWorkingYear;
+    enum dayOffType askDayOff[MAX_DAYS_IN_ONE_MONTH]; // (TODO: wanna rename.)  day1 at [0], day2 at [1], ..., day12 at [11]
 };
 
 struct RequirmentInMonth
 {
     const char *month;
-    int totalDaysInMonth;     // TODO it might be 28 / 29 days in Frb.  -> couldn't use map to link month to total number of days
-    int staffsRequirment[31]; //choose either staffsRequirment or staffsCouldTakeDayOff
-    int staffsCouldTakeDayOff[31];
+    int totalDaysInMonth;                        // couldn't use map / dictionary structure -> it might be 28 / 29 days in Frb
+    int staffsRequirment[MAX_DAYS_IN_ONE_MONTH]; //choose either staffsRequirment or staffsCouldTakeDayOff
+    int staffsCouldTakeDayOff[MAX_DAYS_IN_ONE_MONTH];
     ////TOOD should save the names who take day off
 };
 

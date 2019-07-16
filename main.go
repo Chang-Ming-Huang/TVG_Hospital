@@ -47,16 +47,16 @@ func setUserInfo(staffs *C.struct_Staff, requirmentInMonth *C.struct_RequirmentI
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 3, C.RED_LINE)
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 5, C.GREEN_LINE)
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 8, C.VACATION_RESERVATION)
+
 }
 
 func setDefultDayOffValue(staffs *C.struct_Staff, staffIndex int, endDayOfMonth int) {
-	var sizeOfAskDayOffArray = 31
 
 	for day := 0; day < endDayOfMonth; day++ {
 		C.SetStaffDayOff(staffs, C.int(staffIndex), C.int(day), C.WORKING)
 	}
 
-	for daysDoesNotExist := endDayOfMonth + 1; daysDoesNotExist <= sizeOfAskDayOffArray; daysDoesNotExist++ {
+	for daysDoesNotExist := endDayOfMonth + 1; daysDoesNotExist <= C.MAX_DAYS_IN_ONE_MONTH; daysDoesNotExist++ {
 		C.SetStaffDayOff(staffs, C.int(staffIndex), C.int(daysDoesNotExist), C.THIS_DAY_DOES_NOT_EXIST)
 	}
 
