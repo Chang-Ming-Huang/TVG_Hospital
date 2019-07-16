@@ -18,22 +18,23 @@ func main() {
 	var staffs *C.struct_Staff = C.CreateStaffs(totalStaffNum)
 
 	setRequirment(requirmentInMonth)
-	setUserInfo(staffs)
+	setUserInfo(staffs, requirmentInMonth)
 
 	C.PrintRequirment(requirmentInMonth)
 	C.PrintStaffsAskDayOffRecords(staffs, totalStaffNum)
 }
 
 func setRequirment(requirmentInMonth *C.struct_RequirmentInMonth) {
-	C.SetRequirmentMonth(requirmentInMonth, C.CString("JULY"), C.int(31))
+	//C.SetRequirmentMonth(requirmentInMonth, C.CString("JULY"), C.int(31))
+	C.SetRequirmentMonth(requirmentInMonth, C.CString("FEB"), C.int(28))
 }
 
-func setUserInfo(staffs *C.struct_Staff) {
+func setUserInfo(staffs *C.struct_Staff, requirmentInMonth *C.struct_RequirmentInMonth) {
 	var staffIndex = 0
 	firstPerson := C.CString("Lee")
 	C.SetStaffName(staffs, C.int(staffIndex), firstPerson)
 
-	setDefultDayOffValue(staffs, staffIndex)
+	setDefultDayOffValue(staffs, staffIndex, int(requirmentInMonth.totalDaysInMonth))
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 2, C.RED_LINE)
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 5, C.GREEN_LINE)
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 7, C.VACATION_RESERVATION)
@@ -42,17 +43,23 @@ func setUserInfo(staffs *C.struct_Staff) {
 	secondPerson := C.CString("Huang")
 	C.SetStaffName(staffs, C.int(staffIndex), secondPerson)
 
-	setDefultDayOffValue(staffs, staffIndex)
+	setDefultDayOffValue(staffs, staffIndex, int(requirmentInMonth.totalDaysInMonth))
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 3, C.RED_LINE)
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 5, C.GREEN_LINE)
 	C.SetStaffDayOff(staffs, C.int(staffIndex), 8, C.VACATION_RESERVATION)
 }
 
-//TODO 31->ENUM
-func setDefultDayOffValue(staffs *C.struct_Staff, staffIndex int) {
-	for day := 0; day < 31; day++ {
+func setDefultDayOffValue(staffs *C.struct_Staff, staffIndex int, endDayOfMonth int) {
+	var sizeOfAskDayOffArray = 31
+
+	for day := 0; day < endDayOfMonth; day++ {
 		C.SetStaffDayOff(staffs, C.int(staffIndex), C.int(day), C.WORKING)
 	}
+
+	for daysDoesNotExist := endDayOfMonth + 1; daysDoesNotExist <= sizeOfAskDayOffArray; daysDoesNotExist++ {
+		C.SetStaffDayOff(staffs, C.int(staffIndex), C.int(daysDoesNotExist), C.THIS_DAY_DOES_NOT_EXIST)
+	}
+
 }
 
 func howToUseBasicFunctions() {

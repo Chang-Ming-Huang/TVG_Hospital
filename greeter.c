@@ -64,16 +64,16 @@ void ShowAskDayOff(enum dayOffType *askDayOff, int totalDays)
   printf("[");
   for (int i = 0; i < totalDays; i++)
   {
-    if (askDayOff[i] != WORKING)
+    if (askDayOff[i] != WORKING && askDayOff[i] != THIS_DAY_DOES_NOT_EXIST)
     {
       if (IsFirstElement == true)
       {
-        printf("Day %d: %d", i, askDayOff[i]);
+        printf("Day %d: %d", i + 1, askDayOff[i]); // [0] represent day1; [9] represent day 10
         IsFirstElement = false;
       }
       else
       {
-        printf(", Day %d: %d", i, askDayOff[i]);
+        printf(", Day %d: %d", i + 1, askDayOff[i]);
       }
     }
   }
@@ -82,17 +82,17 @@ void ShowAskDayOff(enum dayOffType *askDayOff, int totalDays)
 
 void SetStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType)
 {
+  day--; //day1 should be saved at [0]; day 10 should be saved at [9]
   staffs[staffIndex].askDayOff[day] = askDayOffType;
 }
 
-//TODO
 void PrintStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum)
 {
-  int totalDays = 31;
+  int sizeOfAskDayOffArray = 31;
   for (int i = 0; i < totalStaffNum; i++)
   {
     printf("%s:", staffs[i].name);
-    ShowAskDayOff(staffs[i].askDayOff, totalDays);
+    ShowAskDayOff(staffs[i].askDayOff, sizeOfAskDayOffArray);
   }
 }
 

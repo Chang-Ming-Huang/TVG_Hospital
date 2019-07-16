@@ -10,6 +10,7 @@ enum specialStatus
 };
 enum dayOffType
 {
+    THIS_DAY_DOES_NOT_EXIST = -1,
     WORKING,
     RED_LINE,
     GREEN_LINE,
@@ -24,14 +25,14 @@ struct Staff
     const char *id;
     enum title position;
     enum specialStatus status;
-    enum dayOffType askDayOff[31];
+    enum dayOffType askDayOff[31]; // save record of day1 at [0], day2 at [1], ..., day12 at [11]
     int startWorkingYear;
 };
 
 struct RequirmentInMonth
 {
     const char *month;
-    int totalDaysInMonth;     // TODO it might be 28 / 29 days in Frb.
+    int totalDaysInMonth;     // TODO it might be 28 / 29 days in Frb.  -> couldn't use map to link month to total number of days
     int staffsRequirment[31]; //choose either staffsRequirment or staffsCouldTakeDayOff
     int staffsCouldTakeDayOff[31];
     ////TOOD should save the names who take day off
