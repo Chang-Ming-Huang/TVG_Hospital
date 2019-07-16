@@ -3,6 +3,7 @@ package main
 // #cgo CFLAGS: -g -Wall
 // #include <stdlib.h>
 // #include "greeter.h"
+// #include "staffInfo.h"
 import "C"
 import (
 	"fmt"
