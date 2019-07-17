@@ -15,7 +15,7 @@ int main()
 
     printMeaningOfEnum();
     printRequirment(requirmentInMonth);
-    printStaffsAskDayOffRecords(staffs, totalStaffNum);
+    printStaffsWannaDayOffList(staffs, totalStaffNum);
 
     return 0;
 }

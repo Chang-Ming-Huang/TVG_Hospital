@@ -28,7 +28,7 @@ struct Staff
     int startWorkingYear;
     enum title position;
     enum specialStatus status;
-    enum dayOffType askDayOff[MAX_DAYS_IN_ONE_MONTH]; // (TODO: wanna rename.)  day1 at [0], day2 at [1], ..., day12 at [11]
+    enum dayOffType wannaDayOffList[MAX_DAYS_IN_ONE_MONTH]; // day1 at [0], day2 at [1], ..., day12 at [11]
 };
 
 struct RequirmentInMonth
@@ -44,9 +44,9 @@ int greet(struct Staff *g, char *out);
 
 struct Staff *createStaffs(int num);
 void setStaffName(struct Staff *staffs, int index, char *name);
-void printStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum);
+void printStaffsWannaDayOffList(struct Staff staffs[], int totalStaffNum);
 void setStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType);
-void showAskDayOff(enum dayOffType *askDayOff, int totalDays);
+void showWannaDayOffList(enum dayOffType *wannaDayOffList, int totalDays);
 
 struct RequirmentInMonth *createRequirmentInMonth();
 void setRequirmentMonth(struct RequirmentInMonth *requirmentInMonth, char *month, int totalDaysInMonth);

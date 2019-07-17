@@ -20,7 +20,7 @@ void setStaffName(struct Staff *staffs, int index, char *name)
     staffs[index].name = name;
 }
 
-void showAskDayOff(enum dayOffType *askDayOff, int totalDays)
+void showWannaDayOffList(enum dayOffType *askDayOff, int totalDays)
 {
     bool IsFirstElement = true;
     printf("[");
@@ -45,15 +45,15 @@ void showAskDayOff(enum dayOffType *askDayOff, int totalDays)
 void setStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType)
 {
     day--; //day1 should be saved at [0]; day 10 should be saved at [9]
-    staffs[staffIndex].askDayOff[day] = askDayOffType;
+    staffs[staffIndex].wannaDayOffList[day] = askDayOffType;
 }
 
-void printStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum)
+void printStaffsWannaDayOffList(struct Staff staffs[], int totalStaffNum)
 {
     for (int i = 0; i < totalStaffNum; i++)
     {
         printf("%s:", staffs[i].name);
-        showAskDayOff(staffs[i].askDayOff, MAX_DAYS_IN_ONE_MONTH);
+        showWannaDayOffList(staffs[i].wannaDayOffList, MAX_DAYS_IN_ONE_MONTH);
     }
 }
 

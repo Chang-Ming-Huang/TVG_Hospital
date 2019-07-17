@@ -22,7 +22,7 @@ func main() {
 	setUserInfo(staffs, requirmentInMonth)
 
 	C.printRequirment(requirmentInMonth)
-	C.printStaffsAskDayOffRecords(staffs, totalStaffNum)
+	C.printStaffsWannaDayOffList(staffs, totalStaffNum)
 }
 
 func setRequirment(requirmentInMonth *C.struct_RequirmentInMonth) {
