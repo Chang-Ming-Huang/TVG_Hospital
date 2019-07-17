@@ -13,52 +13,52 @@ import (
 func main() {
 	//howToUseBasicFunctions()
 
-	var requirmentInMonth *C.struct_RequirmentInMonth = C.CreateRequirmentInMonth()
+	var requirmentInMonth *C.struct_RequirmentInMonth = C.createRequirmentInMonth()
 
 	var totalStaffNum = C.int(5)
-	var staffs *C.struct_Staff = C.CreateStaffs(totalStaffNum)
+	var staffs *C.struct_Staff = C.createStaffs(totalStaffNum)
 
 	setRequirment(requirmentInMonth)
 	setUserInfo(staffs, requirmentInMonth)
 
-	C.PrintRequirment(requirmentInMonth)
-	C.PrintStaffsAskDayOffRecords(staffs, totalStaffNum)
+	C.printRequirment(requirmentInMonth)
+	C.printStaffsAskDayOffRecords(staffs, totalStaffNum)
 }
 
 func setRequirment(requirmentInMonth *C.struct_RequirmentInMonth) {
-	//C.SetRequirmentMonth(requirmentInMonth, C.CString("JULY"), C.int(31))
-	C.SetRequirmentMonth(requirmentInMonth, C.CString("FEB"), C.int(28))
+	//C.setRequirmentMonth(requirmentInMonth, C.CString("JULY"), C.int(31))
+	C.setRequirmentMonth(requirmentInMonth, C.CString("FEB"), C.int(28))
 }
 
 func setUserInfo(staffs *C.struct_Staff, requirmentInMonth *C.struct_RequirmentInMonth) {
 	var staffIndex = 0
 	firstPerson := C.CString("Lee")
-	C.SetStaffName(staffs, C.int(staffIndex), firstPerson)
+	C.setStaffName(staffs, C.int(staffIndex), firstPerson)
 
 	setDefultDayOffValue(staffs, staffIndex, int(requirmentInMonth.totalDaysInMonth))
-	C.SetStaffDayOff(staffs, C.int(staffIndex), 2, C.RED_LINE)
-	C.SetStaffDayOff(staffs, C.int(staffIndex), 5, C.GREEN_LINE)
-	C.SetStaffDayOff(staffs, C.int(staffIndex), 7, C.VACATION_RESERVATION)
+	C.setStaffDayOff(staffs, C.int(staffIndex), 2, C.RED_LINE)
+	C.setStaffDayOff(staffs, C.int(staffIndex), 5, C.GREEN_LINE)
+	C.setStaffDayOff(staffs, C.int(staffIndex), 7, C.VACATION_RESERVATION)
 
 	staffIndex = 1
 	secondPerson := C.CString("Huang")
-	C.SetStaffName(staffs, C.int(staffIndex), secondPerson)
+	C.setStaffName(staffs, C.int(staffIndex), secondPerson)
 
 	setDefultDayOffValue(staffs, staffIndex, int(requirmentInMonth.totalDaysInMonth))
-	C.SetStaffDayOff(staffs, C.int(staffIndex), 3, C.RED_LINE)
-	C.SetStaffDayOff(staffs, C.int(staffIndex), 5, C.GREEN_LINE)
-	C.SetStaffDayOff(staffs, C.int(staffIndex), 8, C.VACATION_RESERVATION)
+	C.setStaffDayOff(staffs, C.int(staffIndex), 3, C.RED_LINE)
+	C.setStaffDayOff(staffs, C.int(staffIndex), 5, C.GREEN_LINE)
+	C.setStaffDayOff(staffs, C.int(staffIndex), 8, C.VACATION_RESERVATION)
 
 }
 
 func setDefultDayOffValue(staffs *C.struct_Staff, staffIndex int, endDayOfMonth int) {
 
 	for day := 0; day < endDayOfMonth; day++ {
-		C.SetStaffDayOff(staffs, C.int(staffIndex), C.int(day), C.WORKING)
+		C.setStaffDayOff(staffs, C.int(staffIndex), C.int(day), C.WORKING)
 	}
 
 	for daysDoesNotExist := endDayOfMonth + 1; daysDoesNotExist <= C.MAX_DAYS_IN_ONE_MONTH; daysDoesNotExist++ {
-		C.SetStaffDayOff(staffs, C.int(staffIndex), C.int(daysDoesNotExist), C.THIS_DAY_DOES_NOT_EXIST)
+		C.setStaffDayOff(staffs, C.int(staffIndex), C.int(daysDoesNotExist), C.THIS_DAY_DOES_NOT_EXIST)
 	}
 
 }
@@ -83,7 +83,7 @@ func howToUseBasicFunctions() {
 	fmt.Println(string(b))
 
 	//https://studygolang.com/articles/16825
-	var arr *C.int = C.CreateArray(5)
-	C.SetArrValue(arr, 0, 100)
-	C.PrintArray(arr, 5)
+	var arr *C.int = C.createArray(5)
+	C.setArrValue(arr, 0, 100)
+	C.printArray(arr, 5)
 }

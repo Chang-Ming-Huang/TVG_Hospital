@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct Staff *CreateStaffs(int num)
+struct Staff *createStaffs(int num)
 {
     struct Staff *staffs = (struct Staff *)malloc(sizeof(struct Staff) * num);
     int i = 0;
@@ -15,12 +15,12 @@ struct Staff *CreateStaffs(int num)
     return staffs;
 }
 
-void SetStaffName(struct Staff *staffs, int index, char *name)
+void setStaffName(struct Staff *staffs, int index, char *name)
 {
     staffs[index].name = name;
 }
 
-void ShowAskDayOff(enum dayOffType *askDayOff, int totalDays)
+void showAskDayOff(enum dayOffType *askDayOff, int totalDays)
 {
     bool IsFirstElement = true;
     printf("[");
@@ -42,22 +42,22 @@ void ShowAskDayOff(enum dayOffType *askDayOff, int totalDays)
     printf("]\n");
 }
 
-void SetStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType)
+void setStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType)
 {
     day--; //day1 should be saved at [0]; day 10 should be saved at [9]
     staffs[staffIndex].askDayOff[day] = askDayOffType;
 }
 
-void PrintStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum)
+void printStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum)
 {
     for (int i = 0; i < totalStaffNum; i++)
     {
         printf("%s:", staffs[i].name);
-        ShowAskDayOff(staffs[i].askDayOff, MAX_DAYS_IN_ONE_MONTH);
+        showAskDayOff(staffs[i].askDayOff, MAX_DAYS_IN_ONE_MONTH);
     }
 }
 
-struct RequirmentInMonth *CreateRequirmentInMonth()
+struct RequirmentInMonth *createRequirmentInMonth()
 {
     struct RequirmentInMonth *requirmentInMonth = (struct RequirmentInMonth *)malloc(sizeof(struct RequirmentInMonth) * 1);
 
@@ -69,13 +69,13 @@ struct RequirmentInMonth *CreateRequirmentInMonth()
     return requirmentInMonth;
 }
 
-void SetRequirmentMonth(struct RequirmentInMonth *requirmentInMonth, char *month, int totalDaysInMonth)
+void setRequirmentMonth(struct RequirmentInMonth *requirmentInMonth, char *month, int totalDaysInMonth)
 {
     requirmentInMonth->month = month;
     requirmentInMonth->totalDaysInMonth = totalDaysInMonth;
 }
 
-void PrintRequirment(struct RequirmentInMonth *requirmentInMonth)
+void printRequirment(struct RequirmentInMonth *requirmentInMonth)
 {
     printf("Month: %s, %d days. \n", requirmentInMonth->month, requirmentInMonth->totalDaysInMonth);
 }

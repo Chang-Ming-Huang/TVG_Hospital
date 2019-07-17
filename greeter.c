@@ -11,7 +11,7 @@ int greet(struct Staff *g, char *out)
   return n;
 }
 
-void PrintArray(int arr[], int len)
+void printArray(int arr[], int len)
 {
   int i = 0;
   printf("[");
@@ -25,7 +25,7 @@ void PrintArray(int arr[], int len)
   printf("]\n");
 }
 
-int *CreateArray(int len)
+int *createArray(int len)
 {
   int *arr = (int *)malloc(sizeof(int) * len);
   int i = 0;
@@ -36,7 +36,7 @@ int *CreateArray(int len)
   return arr;
 }
 
-void SetArrValue(int *arr, int index, int value)
+void setArrValue(int *arr, int index, int value)
 {
   arr[index] = value;
 }

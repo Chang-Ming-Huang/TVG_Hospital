@@ -42,12 +42,12 @@ struct RequirmentInMonth
 
 int greet(struct Staff *g, char *out);
 
-struct Staff *CreateStaffs(int num);
-void SetStaffName(struct Staff *staffs, int index, char *name);
-void PrintStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum);
-void SetStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType);
-void ShowAskDayOff(enum dayOffType *askDayOff, int totalDays);
+struct Staff *createStaffs(int num);
+void setStaffName(struct Staff *staffs, int index, char *name);
+void printStaffsAskDayOffRecords(struct Staff staffs[], int totalStaffNum);
+void setStaffDayOff(struct Staff *staffs, int staffIndex, int day, enum dayOffType askDayOffType);
+void showAskDayOff(enum dayOffType *askDayOff, int totalDays);
 
-struct RequirmentInMonth *CreateRequirmentInMonth();
-void SetRequirmentMonth(struct RequirmentInMonth *requirmentInMonth, char *month, int totalDaysInMonth);
-void PrintRequirment(struct RequirmentInMonth *requirmentInMonth);
+struct RequirmentInMonth *createRequirmentInMonth();
+void setRequirmentMonth(struct RequirmentInMonth *requirmentInMonth, char *month, int totalDaysInMonth);
+void printRequirment(struct RequirmentInMonth *requirmentInMonth);
