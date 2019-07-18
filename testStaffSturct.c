@@ -72,7 +72,7 @@ void setUserInfo(struct Staff *staffs, struct RequirmentInMonth *requirmentInMon
 void setDefultDayOffValue(struct Staff *staffs, int staffIndex, int endDayOfMonth)
 {
 
-    for (int day = 0; day < endDayOfMonth; day++)
+    for (int day = 1; day <= endDayOfMonth; day++)
     {
         setStaffDayOff(staffs, staffIndex, day, WORKING);
     }
@@ -114,6 +114,5 @@ void testForArrayIndex()
     staffs[0].status = PREGNANT;
     printf("Before we set default values of wannaDayOffList, staffs[0].status = %d\n", staffs[0].status);
     setUserInfo(staffs, requirmentInMonth);
-    printf("There's a BUG setting the value of wannaDayOffList[-1].\nIt changes the value of staffs[0].status ! Right now, staffs[0].status = %d\n", staffs[0].status);
-    printf("It proves that wannaDayOffList[-1] points to 'status'.\n");
+    printf("After we set default values of wannaDayOffList, staffs[0].status = %d\n", staffs[0].status);
 }
