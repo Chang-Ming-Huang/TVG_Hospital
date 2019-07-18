@@ -17,6 +17,7 @@ int main()
     printRequirment(requirmentInMonth);
     printStaffsWannaDayOffList(staffs, totalStaffNum);
 
+    testForArrayIndex();
     return 0;
 }
 
@@ -89,4 +90,30 @@ void printMeaningOfEnum()
     printf("0: go to work (deafult). It won't show later.\n1: staff ask for day off\n");
     printf("2: staff has higher priority to take day off(e.g. business trip, go to school)\n3: reservation of vacation\n");
     printf("================================\n");
+}
+
+void testForArrayIndex()
+{
+    printf("================================\n");
+
+    int arrayWithSizeOf3[3];
+    arrayWithSizeOf3[-1] = 4;
+    printf("arrayWithSizeOf3[-1] = %d\n", arrayWithSizeOf3[-1]);
+
+    arrayWithSizeOf3[4] = 6;
+    printf("arrayWithSizeOf3[4] = %d   no error???\n\n", arrayWithSizeOf3[4]);
+
+    struct RequirmentInMonth *requirmentInMonth = createRequirmentInMonth();
+    int totalStaffNum = 1;
+    struct Staff *staffs = createStaffs(totalStaffNum);
+
+    setRequirment(requirmentInMonth);
+
+    printf("In struct Staff, the variable before 'wannaDayOffList' is 'status'.\n");
+    printf("First, Let's set staffs[0].status = PREGNANT\n");
+    staffs[0].status = PREGNANT;
+    printf("Before we set default values of wannaDayOffList, staffs[0].status = %d\n", staffs[0].status);
+    setUserInfo(staffs, requirmentInMonth);
+    printf("There's a BUG setting the value of wannaDayOffList[-1].\nIt changes the value of staffs[0].status ! Right now, staffs[0].status = %d\n", staffs[0].status);
+    printf("It proves that wannaDayOffList[-1] points to 'status'.\n");
 }
